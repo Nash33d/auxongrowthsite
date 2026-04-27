@@ -100,7 +100,7 @@ export const ALL_PLATFORMS_QUERY = defineQuery(`
 
 // ── All slugs for static generation ──────────────────────────────────
 export const ALL_ARTICLE_SLUGS_QUERY = defineQuery(`
-  *[_type == "article"] {
+  *[_type == "article" && defined(niche->slug.current) && defined(slug.current)] {
     "slug": slug.current,
     "niche": niche->slug.current
   }

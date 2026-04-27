@@ -45,7 +45,9 @@ interface Article {
 
 export async function generateStaticParams() {
   const slugs = await client.fetch<{ slug: string; niche: string }[]>(ALL_ARTICLE_SLUGS_QUERY)
-  return slugs.map((s) => ({ niche: s.niche, slug: s.slug }))
+  return slugs
+    .filter((s) => s.niche && s.slug)
+    .map((s) => ({ niche: String(s.niche), slug: String(s.slug) }))
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
