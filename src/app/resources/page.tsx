@@ -96,7 +96,7 @@ export default async function ResourcesHub() {
           <p className="text-white/50">No articles published yet. Add content in the Studio.</p>
         ) : (
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {articles.map((a) => (
+            {articles.filter((a) => a.nicheSlug && a.slug?.current).map((a) => (
               <Link
                 key={a._id}
                 href={`/resources/${a.nicheSlug}/${a.slug.current}`}
