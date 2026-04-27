@@ -40,8 +40,17 @@ export default async function ResourcesHub() {
 
   return (
     <main className="min-h-screen bg-[#050A0A] text-white">
+      {/* Breadcrumb */}
+      <nav className="mx-auto max-w-6xl px-6 pt-8 text-sm text-white/40">
+        <Link href="/" className="hover:text-[#00FFB3]">
+          Auxon Growth
+        </Link>
+        <span className="mx-2">/</span>
+        <span className="text-white/60">Resources</span>
+      </nav>
+
       {/* Header */}
-      <section className="border-b border-white/10 px-6 py-20 text-center">
+      <section className="border-b border-white/10 px-6 py-12 text-center">
         <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-[#00FFB3]">
           Resources
         </p>

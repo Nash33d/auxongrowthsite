@@ -35,6 +35,12 @@ interface Article {
   body: PortableTextBlock[]
   publishedAt: string
   seoKeywords: string[] | null
+  links: Array<{
+    _id: string
+    title: string
+    slug: { current: string }
+    niche: { slug: { current: string } }
+  }> | null
 }
 
 export async function generateStaticParams() {
@@ -131,6 +137,10 @@ export default async function ArticlePage({ params }: Props) {
     <main className="min-h-screen bg-[#050A0A] text-white">
       {/* Breadcrumb */}
       <nav className="mx-auto max-w-3xl px-6 pt-8 text-sm text-white/40">
+        <Link href="/" className="hover:text-[#00FFB3]">
+          Auxon Growth
+        </Link>
+        <span className="mx-2">/</span>
         <Link href="/resources" className="hover:text-[#00FFB3]">
           Resources
         </Link>
@@ -170,6 +180,29 @@ export default async function ArticlePage({ params }: Props) {
           <p className="text-white/40">This article has no content yet.</p>
         )}
       </article>
+
+      {/* Related articles */}
+      {article.links && article.links.length > 0 && (
+        <section className="mx-auto max-w-3xl border-t border-white/10 px-6 py-10">
+          <p className="mb-6 text-xs font-semibold uppercase tracking-widest text-white/30">
+            Related Resources
+          </p>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {article.links.map((link) => (
+              <Link
+                key={link._id}
+                href={`/resources/${link.niche.slug.current}/${link.slug.current}`}
+                className="group rounded-lg border border-white/10 bg-white/5 p-4 transition-colors hover:border-[#00FFB3]/40 hover:bg-[#00FFB3]/5"
+              >
+                <p className="mb-1 text-xs text-[#00FFB3]">
+                  {link.niche.slug.current.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase())}
+                </p>
+                <p className="font-medium text-white/80 group-hover:text-white">{link.title}</p>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* Keywords footer */}
       {article.seoKeywords && article.seoKeywords.length > 0 && (

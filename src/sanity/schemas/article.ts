@@ -111,6 +111,16 @@ export default defineType({
       options: { layout: 'tags' },
       description: 'Comma-separated target keywords for this pSEO page',
     }),
+    defineField({
+      name: 'links',
+      title: 'Related Articles',
+      type: 'array',
+      of: [{
+        type: 'reference',
+        to: [{ type: 'article' }],
+      }],
+      description: 'Cross-link to related Auxon Growth resource articles',
+    }),
   ],
   preview: {
     select: {

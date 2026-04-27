@@ -39,7 +39,13 @@ export const ARTICLE_BY_SLUG_QUERY = defineQuery(`
     metaDescription,
     body,
     publishedAt,
-    seoKeywords
+    seoKeywords,
+    links[]->{
+      _id,
+      title,
+      slug,
+      niche->{ slug }
+    }
   }
 `)
 

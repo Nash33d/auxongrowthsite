@@ -65,12 +65,23 @@ export default async function NichePage({ params }: Props) {
     <main className="min-h-screen bg-[#050A0A] text-white">
       {/* Hero */}
       <section className="border-b border-white/10 px-6 py-20 text-center">
-        <Link
-          href="/resources"
-          className="mb-4 inline-block text-sm text-[#00FFB3] hover:underline"
-        >
-          ← All Resources
-        </Link>
+        <div className="flex items-center justify-center gap-4 text-sm">
+          <Link
+            href="/"
+            className="text-white/40 hover:text-[#00FFB3] transition-colors"
+          >
+            Auxon Growth
+          </Link>
+          <span className="text-white/20">/</span>
+          <Link
+            href="/resources"
+            className="text-[#00FFB3] hover:underline"
+          >
+            Resources
+          </Link>
+          <span className="text-white/20">/</span>
+          <span className="text-white/60">{niche.name}</span>
+        </div>
         <h1 className="mx-auto max-w-3xl text-4xl font-bold leading-tight md:text-5xl">
           {niche.name}
         </h1>
