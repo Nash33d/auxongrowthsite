@@ -7,7 +7,7 @@ import { client } from '@/sanity/lib/client'
 import { ARTICLE_BY_SLUG_QUERY, ALL_ARTICLE_SLUGS_QUERY } from '@/sanity/lib/queries'
 import { urlFor } from '@/sanity/lib/image'
 
-export const revalidate = 60
+export const revalidate = 30
 
 interface Props {
   params: Promise<{ niche: string; slug: string }>
